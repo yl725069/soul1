@@ -3,7 +3,7 @@
     <!-- ===== Top Navigation Bar ===== -->
     <view class="topbar">
       <view class="topbar-left">
-        <text class="brand">PsyTools</text>
+        <text class="brand">Soultools</text>
         <text class="breadcrumb">首页</text>
       </view>
       <view class="topbar-right">

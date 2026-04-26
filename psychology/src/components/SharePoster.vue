@@ -181,7 +181,7 @@ watch(() => props.visible, async (val) => {
   ctx.setFillStyle('rgba(255,255,255,0.25)')
   ctx.setFontSize(10)
   ctx.fillText('扫码查看完整报告', W / 2, qrY + qrSize + 22)
-  ctx.fillText('PsyTools · iostar.space', W / 2, qrY + qrSize + 38)
+  ctx.fillText('Soultools · iostar.space', W / 2, qrY + qrSize + 38)
 
   ctx.draw()
 })

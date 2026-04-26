@@ -2,6 +2,8 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Viewport -->
     <script>
       var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
         CSS.supports('top: constant(a)'))
@@ -9,8 +11,46 @@
         '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
         (coverSupport ? ', viewport-fit=cover' : '') + '" />')
     </script>
-    <title>心理测评工具站</title>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <!-- Primary Meta Tags -->
+    <title>Soultools - 在线心理测评工具站 | 免费MBTI、性格测试、心理健康评估</title>
+    <meta name="description" content="Soultools 提供专业的在线心理测评工具，包括MBTI职业性格测试、人格类型评估等。基于心理学理论，帮助你深入了解自己的性格特质、职场优势与个人发展建议。" />
+    <meta name="keywords" content="心理测评,心理测试,MBTI,职业性格测试,人格测试,心理健康评估,在线心理工具,Soultools" />
+    <link rel="canonical" href="https://soul.iostar.space/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://soul.iostar.space/" />
+    <meta property="og:title" content="Soultools - 在线心理测评工具站" />
+    <meta property="og:description" content="专业的在线心理测评工具，帮助您深入了解自己的性格特质、职场优势与发展建议。" />
+    <meta property="og:image" content="https://soul.iostar.space/og-image.png" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="Soultools" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Soultools - 在线心理测评工具站" />
+    <meta name="twitter:description" content="专业的在线心理测评工具，帮助您深入了解自己的性格特质、职场优势与发展建议。" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Soultools",
+      "alternateName": "Soultools 心理测评工具站",
+      "url": "https://soul.iostar.space/",
+      "description": "专业的在线心理测评工具平台，提供MBTI职业性格测试等多种心理评估工具。",
+      "applicationCategory": "SelfAssessment",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "inLanguage": "zh-CN"
+    }
+    </script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+
     <!--preload-links-->
     <!--app-context-->
   </head>
