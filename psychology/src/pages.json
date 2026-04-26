@@ -1,0 +1,32 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "心理测评工具站",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/test/mbti",
+      "style": {
+        "navigationBarTitleText": "METI MBTI 测试",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/result/mbti",
+      "style": {
+        "navigationBarTitleText": "测试结果",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "心理测评工具站",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "uniIdRouter": {}
+}
