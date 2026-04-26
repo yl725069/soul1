@@ -54,7 +54,6 @@
           <view class="start-meta">
             <text class="meta-chip">93 题</text>
             <text class="meta-chip">约 15 分钟</text>
-            <text class="meta-chip">结果本地存储</text>
           </view>
           <view class="btn btn-primary btn-lg" @click="startTest">开始测评 →</view>
         </view>
@@ -149,7 +148,7 @@
 
     <!-- ===== Footer ===== -->
     <view class="footer">
-      <text class="footer-text">© 2026 PsyTools · 数据仅存储于本地</text>
+      <text class="footer-text">© 2026 Soul ioStar</text>
     </view>
   </view>
 </template>

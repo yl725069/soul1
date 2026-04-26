@@ -146,7 +146,7 @@
 
     <!-- Footer -->
     <view class="footer">
-      <text class="footer-text">PsyTools · 纯前端心理测评工具 · 数据仅存储于本地</text>
+      <text class="footer-text">Soul ioStar · 心理测评工具</text>
     </view>
 
     <!-- Share Poster Modal -->

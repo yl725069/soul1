@@ -57,7 +57,7 @@
         "usingComponents" : true,
         "permission" : {
             "scope.userLocation" : {
-                "desc" : "你的位置信息将用于获取本地化测评推荐"
+                "desc" : "你的位置信息将用于获取测评推荐"
             }
         }
     },
