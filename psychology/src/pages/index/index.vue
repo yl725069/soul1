@@ -94,6 +94,20 @@
 
       <!-- ===== Right Column (large screens) ===== -->
       <view class="col-right">
+        <!-- Other Tests -->
+        <view class="card other-tests-card" v-if="otherTests.length > 0">
+          <text class="card-title">其他测试</text>
+          <view class="other-test-item" v-for="t in otherTests" :key="t.id">
+            <view class="other-test-icon">{{ t.icon }}</view>
+            <view class="other-test-info">
+              <text class="other-test-name">{{ t.name }}</text>
+              <text class="other-test-desc">{{ t.desc }}</text>
+              <text class="other-test-meta">{{ t.questionCount }} 题 · {{ t.time }}</text>
+            </view>
+            <view class="btn btn-primary btn-xs" @click="startOtherTest(t)">开始</view>
+          </view>
+        </view>
+
         <!-- Personality Ranking -->
         <view class="card ranking-card">
           <text class="card-title">热门人格</text>
@@ -169,6 +183,18 @@ let clockTimer
 
 const previewKeywords = computed(() => previewData.value ? getKeywords(previewData.value.type) : [])
 
+const otherTests = [
+  {
+    id: 'mbti16',
+    name: 'MBTI 简易版',
+    desc: '16题快速测评，了解你的性格倾向',
+    questionCount: 16,
+    time: '约3分钟',
+    icon: '🌿',
+    url: '/pages/test/mbti16'
+  }
+]
+
 const hasProgress = computed(() => store.answers.length > 0)
 
 const progress = computed(() => {
@@ -238,6 +264,10 @@ function previewType(pt) {
 function doReset() {
   confirmReset.value = false
   store.resetTest()
+}
+
+function startOtherTest(test) {
+  uni.navigateTo({ url: test.url })
 }
 </script>
 
@@ -319,6 +349,18 @@ function doReset() {
 .preview-tag { font-size: 11px; padding: 3px 9px; border-radius: 10px; background: white; border: 1px solid var(--accent-border); color: var(--accent); }
 .preview-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
 
+/* ===== Other Tests ===== */
+.other-test-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 0; border-bottom: 1px solid var(--border-color);
+}
+.other-test-item:last-of-type { border-bottom: none; }
+.other-test-icon { font-size: 22px; flex-shrink: 0; }
+.other-test-info { flex: 1; min-width: 0; }
+.other-test-name { display: block; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.other-test-desc { display: block; font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+.other-test-meta { display: block; font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
 /* ===== Ranking ===== */
 .ranking-list { display: flex; flex-direction: column; gap: 4px; }
 .rank-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 8px; transition: background 0.15s; }
@@ -346,6 +388,7 @@ function doReset() {
 .btn-danger:hover { background: #dc2626; }
 .btn-lg { padding: 13px 36px; font-size: 15px; border-radius: 10px; }
 .btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-xs { padding: 4px 10px; font-size: 11px; border-radius: 6px; }
 
 .tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
 .tag.blue { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-border); }

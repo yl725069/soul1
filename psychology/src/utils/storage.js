@@ -1,40 +1,27 @@
-const KEYS = {
-  TEST_STATE: 'mbti_test_state',
-  SCORES: 'mbti_scores'
+export const TEST_STORAGE_PREFIX = 'mbti_test_'
+
+function storageKey(suffix) {
+  return TEST_STORAGE_PREFIX + (suffix || 'state')
 }
 
-export function saveTestState(state) {
+export function saveTestState(state, suffix) {
   try {
-    uni.setStorageSync(KEYS.TEST_STATE, state)
+    uni.setStorageSync(storageKey(suffix), state)
   } catch (e) {
     console.warn('saveTestState error:', e)
   }
 }
 
-export function loadTestState() {
+export function loadTestState(suffix) {
   try {
-    return uni.getStorageSync(KEYS.TEST_STATE) || null
+    return uni.getStorageSync(storageKey(suffix)) || null
   } catch (e) {
     return null
   }
 }
 
-export function clearTestState() {
+export function clearTestState(suffix) {
   try {
-    uni.removeStorageSync(KEYS.TEST_STATE)
+    uni.removeStorageSync(storageKey(suffix))
   } catch (e) {}
-}
-
-export function saveScores(scores) {
-  try {
-    uni.setStorageSync(KEYS.SCORES, scores)
-  } catch (e) {}
-}
-
-export function loadScores() {
-  try {
-    return uni.getStorageSync(KEYS.SCORES) || null
-  } catch (e) {
-    return null
-  }
 }

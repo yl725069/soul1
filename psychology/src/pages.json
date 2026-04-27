@@ -15,6 +15,13 @@
       }
     },
     {
+      "path": "pages/test/mbti16",
+      "style": {
+        "navigationBarTitleText": "MBTI 简易版 - Soultools",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/result/mbti",
       "style": {
         "navigationBarTitleText": "MBTI 测试结果 - Soultools",

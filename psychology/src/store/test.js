@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { saveTestState, loadTestState, clearTestState, saveScores, loadScores } from '../utils/storage'
+import { saveTestState, loadTestState, clearTestState } from '../utils/storage'
 
 export const useTestStore = defineStore('test', {
   state: () => ({
@@ -8,7 +8,8 @@ export const useTestStore = defineStore('test', {
     answers: [],        // [{ questionId, dimension, value }]
     scores: { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 },
     isCompleted: false,
-    result: null        // { type: 'INFP', subtitle: '...', ... }
+    result: null,       // { type: 'INFP', subtitle: '...', testLabel, testPage, ... }
+    config: null        // { testId, minConsistency, testPage, resultPage, testLabel }
   }),
 
   getters: {
@@ -27,9 +28,14 @@ export const useTestStore = defineStore('test', {
   },
 
   actions: {
+    setConfig(cfg) {
+      this.config = cfg
+    },
+
     initTest(questions) {
       this.questions = questions
-      const saved = loadTestState()
+      const suffix = this._storageSuffix()
+      const saved = loadTestState(suffix)
       if (saved && saved.questions === questions.length) {
         this.currentIndex = saved.currentIndex || 0
         this.answers = saved.answers || []
@@ -94,7 +100,6 @@ export const useTestStore = defineStore('test', {
 
         let winner = scoreA > scoreB ? a : (scoreB > scoreA ? b : tie)
 
-        // Detect tie (within 10% threshold)
         const isTie = diff <= 10
         if (isTie) {
           ties.push({ dim: a + '/' + b, a, b, pctA: Math.round(pctA), pctB: Math.round(pctB) })
@@ -102,7 +107,6 @@ export const useTestStore = defineStore('test', {
 
         typeCode += winner
 
-        // Determine strength label
         const getStrength = (pct) => {
           if (pct >= 65) return { label: '极强', level: 3 }
           if (pct >= 58) return { label: '中等', level: 2 }
@@ -123,7 +127,8 @@ export const useTestStore = defineStore('test', {
       const answerCount = this.answers.length
       const maxQuestions = this.questions.length
       const completionRate = maxQuestions > 0 ? answerCount / maxQuestions : 0
-      const hasConsistency = answerCount >= 60
+      const minConsistency = this.config?.minConsistency ?? 60
+      const hasConsistency = answerCount >= minConsistency
       let reliability = 0
       if (completionRate >= 0.95 && hasConsistency) reliability = 95
       else if (completionRate >= 0.8) reliability = 85
@@ -141,10 +146,11 @@ export const useTestStore = defineStore('test', {
         portrait: typeData.portrait || '',
         career: typeData.career || [],
         strengths: typeData.strengths || [],
-        weaknesses: typeData.weaknesses || []
+        weaknesses: typeData.weaknesses || [],
+        testLabel: this.config?.testLabel || 'MBTI 测试',
+        testPage: this.config?.testPage || '/pages/test/mbti'
       }
       this.isCompleted = true
-      saveScores(this.scores)
       this._persist()
       return this.result
     },
@@ -155,7 +161,11 @@ export const useTestStore = defineStore('test', {
       this.scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 }
       this.isCompleted = false
       this.result = null
-      clearTestState()
+      clearTestState(this._storageSuffix())
+    },
+
+    _storageSuffix() {
+      return this.config?.testId || undefined
     },
 
     _persist() {
@@ -166,7 +176,7 @@ export const useTestStore = defineStore('test', {
         scores: this.scores,
         isCompleted: this.isCompleted,
         lastTime: Date.now()
-      })
+      }, this._storageSuffix())
     }
   }
 })

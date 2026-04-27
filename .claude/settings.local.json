@@ -40,7 +40,8 @@
       "Bash(vercel --version)",
       "Bash(npx vercel *)",
       "Bash(npm ls *)",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "Bash(npx vite *)"
     ]
   }
 }

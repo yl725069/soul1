@@ -5,7 +5,7 @@
       <view class="topbar-left">
         <text class="breadcrumb-link" @click="goHome">← 首页</text>
         <text class="breadcrumb-sep">/</text>
-        <text class="breadcrumb-link" @click="goTest">MBTI 测试</text>
+        <text class="breadcrumb-link" @click="goTest">{{ breadcrumbLabel }}</text>
         <text class="breadcrumb-sep">/</text>
         <text class="breadcrumb-current">结果报告</text>
       </view>
@@ -189,6 +189,8 @@ const showShare = ref(false)
 const hoverType = ref('')
 const allTypes = ref([])
 
+const breadcrumbLabel = computed(() => result.value.testLabel || 'MBTI 测试')
+
 const result = computed(() => store.result || {
   type: '--', subtitle: '加载中...', details: [], ties: [], reliability: 0,
   description: '', portrait: '', career: [], strengths: [], weaknesses: []
@@ -224,7 +226,7 @@ onMounted(async () => {
     if (personalityTypes && hasAnswers) {
       store.calculateResult(personalityTypes)
     } else {
-      uni.redirectTo({ url: '/pages/test/mbti' })
+      uni.redirectTo({ url: result.value.testPage || '/pages/test/mbti' })
       return
     }
   }
@@ -238,7 +240,7 @@ onMounted(async () => {
 
 function retakeTest() {
   store.resetTest()
-  uni.redirectTo({ url: '/pages/test/mbti' })
+  uni.redirectTo({ url: result.value.testPage || '/pages/test/mbti' })
 }
 
 function goHome() {
@@ -246,7 +248,7 @@ function goHome() {
 }
 
 function goTest() {
-  uni.redirectTo({ url: '/pages/test/mbti' })
+  uni.redirectTo({ url: result.value.testPage || '/pages/test/mbti' })
 }
 
 </script>

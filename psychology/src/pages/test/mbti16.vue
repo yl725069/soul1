@@ -1,12 +1,12 @@
 <template>
   <TestEngine
-    questionsUrl="/static/questions.json"
+    questionsUrl="/static/questions-mbti-16.json"
     :config="{
-      testId: '',
-      minConsistency: 60,
-      testPage: '/pages/test/mbti',
+      testId: 'mbti16',
+      minConsistency: 14,
+      testPage: '/pages/test/mbti16',
       resultPage: '/pages/result/mbti',
-      testLabel: 'MBTI 测试'
+      testLabel: 'MBTI 简易版'
     }"
   />
 </template>
