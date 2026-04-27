@@ -108,19 +108,15 @@ onMounted(async () => {
 
   store.setConfig(props.config)
 
-  if (store.questions.length === 0) {
-    try {
-      const [qRes, pRes] = await Promise.all([
-        uni.request({ url: props.questionsUrl }),
-        uni.request({ url: '/static/personality-types.json' })
-      ])
-      store.initTest(qRes.data)
-      uni.setStorageSync('personality_types', pRes.data)
-    } catch (e) {
-      console.error('Failed to load questions:', e)
-    }
-  } else {
-    store.initTest(store.questions)
+  try {
+    const [qRes, pRes] = await Promise.all([
+      uni.request({ url: props.questionsUrl }),
+      uni.request({ url: '/static/personality-types.json' })
+    ])
+    store.initTest(qRes.data)
+    uni.setStorageSync('personality_types', pRes.data)
+  } catch (e) {
+    console.error('Failed to load questions:', e)
   }
   loading.value = false
 })
