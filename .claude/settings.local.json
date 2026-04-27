@@ -41,7 +41,8 @@
       "Bash(npx vercel *)",
       "Bash(npm ls *)",
       "WebFetch(domain:api.github.com)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(npx --no-install vite build)"
     ]
   }
 }
