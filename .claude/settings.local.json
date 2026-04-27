@@ -38,7 +38,8 @@
       "Bash(npm run *)",
       "WebFetch(domain:soul.iostar.space)",
       "Bash(vercel --version)",
-      "Bash(npx vercel *)"
+      "Bash(npx vercel *)",
+      "Bash(npm ls *)"
     ]
   }
 }

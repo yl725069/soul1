@@ -1,9 +1,12 @@
 <script>
 import { useSettingsStore } from './store/settings'
+import { inject } from '@vercel/analytics'
+
 export default {
   onLaunch: function() {
     const settings = useSettingsStore()
     settings.load()
+    inject()
   }
 }
 </script>
