@@ -39,7 +39,8 @@
       "WebFetch(domain:soul.iostar.space)",
       "Bash(vercel --version)",
       "Bash(npx vercel *)",
-      "Bash(npm ls *)"
+      "Bash(npm ls *)",
+      "WebFetch(domain:api.github.com)"
     ]
   }
 }
